@@ -53,9 +53,6 @@ class Business(db.Model):
     def __repr__(self):
         return f"Business('{self.name}', '{self.city}' , '{self.address}')"
 
-class BusinessSchema(ma.Schema):
-    class Meta:
-        fields = ()
 
  #
 class Tips(db.Model):
@@ -69,9 +66,18 @@ class Tips(db.Model):
     def __repr__(self):
         return f"Tip('{self.user_id}', '{self.business_id}' , '{self.text}')"
 
+
+
 class TipsSchema(ma.Schema):
     class Meta:
-        fields = ('id','business_id','user_id','text','date','compliment_count')
+        fields = ('business_id','user_id','text','date','compliment_count')
+
+
+class BusinessSchema(ma.Schema):
+    tips = ma.Nested(TipsSchema, many = True)
+    class Meta:
+        fields = ('business_id','name','address','city','state','postal_code','latitude','longitude','stars','review_count','is_open','attributes','categories','hours', 'tips')
+  
 
 
 

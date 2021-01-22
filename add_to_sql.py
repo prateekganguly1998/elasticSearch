@@ -71,13 +71,13 @@ def add_user():
 
 
 if __name__=='__main__':
-    # p1 = multiprocessing.Process(target=add_foreign_key_check)
-    # p2= multiprocessing.Process(target=add_business)
-    # p3 = multiprocessing.Process(target=add_tips)
-    # p1.start()
-    # p1.join()
-    # p2.start()
-    # p3.start()
-    # p3.join()
-    # p2.join()
-    add_user()
+    p1 = multiprocessing.Process(target=add_foreign_key_check)
+    p2= multiprocessing.Process(target=add_business)
+    p3 = multiprocessing.Process(target=add_tips)
+    p1.start()
+    p1.join()
+    p2.start()
+    p3.start()
+    p3.join()
+    p2.join()
+    # add_user()

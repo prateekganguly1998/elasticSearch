@@ -3,7 +3,7 @@ from search_engine.models import User, Tips, Business, BusinessSchema, TipsSchem
 from flask import jsonify
 import json
 from pathlib import Path
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, func
 from sqlalchemy.orm import Session
 import mysql.connector
 
@@ -25,3 +25,9 @@ def hello():
     result = tips_schema.dump(tips_data)
     return jsonify(result)
 
+@app.route('/join')
+def join_test():
+    b_data = s.query(Business).limit(20).all()
+    business_schema= BusinessSchema(many=True)
+    result = business_schema.dump(b_data)
+    return jsonify(result)
